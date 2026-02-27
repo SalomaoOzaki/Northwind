@@ -31,12 +31,12 @@ Generated the database schema model using reverse engineering:
 
 To optimize Power BI performance and maintain clean analytical logic, I built a SQL semantic layer using Views.
 
-    These views leverage:
-        -CTEs
-        -Window Functions
-        -Aggregations
-        -Ranking logic
-        -Business KPI calculations
+These views leverage:
+    -CTEs
+    -Window Functions
+    -Aggregations
+    -Ranking logic
+    -Business KPI calculations
 
 All SQL scripts are documented here: northwindQueryViews.sql
 
