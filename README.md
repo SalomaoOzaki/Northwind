@@ -102,7 +102,8 @@ Power BI connects directly to MySQL using the native connector, importing the SQ
 📈 Dashboards & Business Analytics
 🔹 Sales Executive Dashboard
 
-<p align="center"> <img src="ttps://github.com/user-attachments/assets/e93bf902-1eb6-488a-a298-136d97e10be8" width="650"> </p>
+<p align="center"> <img src="https://github.com/user-attachments/assets/e93bf902-1eb6-488a-a298-136d97e10be8" width="650"> </p>
+
 
 Focuses on: Revenue trends (MoM), Sales growth, Top Clients, Employees, Category contribution.
 
