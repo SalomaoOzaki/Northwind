@@ -31,12 +31,12 @@ Generated the database schema model using reverse engineering:
 
 To optimize Power BI performance and maintain clean analytical logic, I built a SQL semantic layer using Views.
 
-These views leverage:
-    -CTEs
-    -Window Functions
-    -Aggregations
-    -Ranking logic
-    -Business KPI calculations
+    These views leverage:
+        -CTEs
+        -Window Functions
+        -Aggregations
+        -Ranking logic
+        -Business KPI calculations
 
 All SQL scripts are documented here: northwindQueryViews.sql
 
@@ -47,6 +47,44 @@ All SQL scripts are documented here: northwindQueryViews.sql
         -vw_monthly_sales → Monthly revenue trends
         -vw_shipping_performance → Logistics & delivery insights
         -vw_top_customers_category → Product-category-based customer analysis
+
+**SQL Code Examples**
+
+```
+CREATE VIEW vw_top_customers_category AS
+
+WITH CustomerCategoryRevenue AS (
+		SELECT
+			s.CustomerID AS CustomerID,
+            s.CustomerName AS CustomerName,
+            s.CategoryName AS CategoryName,
+            s.EmployeeId AS EmployeeId,
+            CONCAT(s.FirstName, ' ', s.LastName) AS EmployeeName,
+            SUM(s.Revenue) AS TotalRevenue
+        FROM vw_fact_sales s
+        GROUP BY
+			CustomerID, CustomerName, CategoryName, EmployeeId),
+
+CustomerCategoryRank AS (
+		SELECT 
+			*,
+            RANK () OVER (PARTITION BY CategoryName ORDER BY TotalRevenue DESC) AS RankCategory,
+            SUM(TotalRevenue) OVER (PARTITION BY CategoryName) AS CategoryRevenue
+		FROM CustomerCategoryRevenue)
+
+
+SELECT 
+	CategoryName, 
+	CustomerID, 	
+	CustomerName, 	
+    EmployeeName, 
+	TotalRevenue,
+    ROUND((TotalRevenue / CategoryRevenue) * 100,2) AS RevenueShare,
+    RankCategory
+FROM CustomerCategoryRank
+WHERE RankCategory <=3
+ORDER BY CategoryName, RankCategory;
+```
 
 This structure allows Power BI to consume analytics-ready datasets, minimizing transformation inside Power BI and ensuring scalable performance.
 
@@ -119,8 +157,8 @@ CALCULATE(
 DIVIDE(
     [TotalRevenue] - [Revenue Last Month],
     [Revenue Last Month]
-)```
-
+)
+```
 
 🎯 Business Value Delivered
 
