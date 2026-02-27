@@ -54,6 +54,8 @@ This structure allows Power BI to consume analytics-ready datasets, minimizing t
 
 **SQL Code Examples**
 
+This code helps to identify the Top 3 customers in each product category, calculate their revenue contribution, and show their revenue share within that category.
+
 ```
 CREATE VIEW vw_top_customers_category AS
 
