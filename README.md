@@ -49,6 +49,9 @@ All SQL scripts are documented here: northwindQueryViews.sql
         -vw_shipping_performance → Logistics & delivery insights
         -vw_top_customers_category → Product-category-based customer analysis
 
+This structure allows Power BI to consume analytics-ready datasets, minimizing transformation inside Power BI and ensuring scalable performance.
+
+
 **SQL Code Examples**
 
 ```
@@ -86,8 +89,6 @@ FROM CustomerCategoryRank
 WHERE RankCategory <=3
 ORDER BY CategoryName, RankCategory;
 ```
-
-This structure allows Power BI to consume analytics-ready datasets, minimizing transformation inside Power BI and ensuring scalable performance.
 
 3️⃣ Power BI Integration & Data Modeling
 
