@@ -1,4 +1,5 @@
 # Northwind
 
 
-<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/2c98eb53-10bc-456a-b916-2caf5ed8c53b" />
+<img width="485" height="387" alt="image" src="https://github.com/user-attachments/assets/477a9c9e-56f1-4bda-989b-5cc210830d2a" />
+
