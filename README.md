@@ -14,7 +14,7 @@ In MYSQL Workench I opened a new SQL query, and then I pulled the query from the
 Generated my Database Schema through Database -> Reverse Engineer
 <img width="485" height="387" alt="image" src="https://github.com/user-attachments/assets/477a9c9e-56f1-4bda-989b-5cc210830d2a" />
  
-Then I created the following views. For reference, the query is available at northwindQueryViews
+Then I created the following views. For reference, the query is available at northwindQueryViews.sql (https://github.com/SalomaoOzaki/Northwind/blob/main/northwindQueryViews.sql)
 vw_fact_sales
 vw_customer_ltv
 vw_employee_performance
@@ -22,7 +22,7 @@ vw_monthly_sales
 vw_shipping_performance
 vw_top_customers_category
 
-
+Then I connected my Power BI to MySQL through a connector and was able to get the views I created.
 
 
 
