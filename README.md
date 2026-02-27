@@ -102,23 +102,15 @@ Power BI connects directly to MySQL using the native connector, importing the SQ
 📈 Dashboards & Business Analytics
 🔹 Sales Executive Dashboard
 
-<img width="651" height="363" alt="image" src="https://github.com/user-attachments/assets/e93bf902-1eb6-488a-a298-136d97e10be8" />
+<p align="center"> <img src="ttps://github.com/user-attachments/assets/e93bf902-1eb6-488a-a298-136d97e10be8" width="650"> </p>
 
-Focuses on:
-Revenue trends (MoM)
-Sales growth
-Top Clients, Employees
-Category contribution
+Focuses on: Revenue trends (MoM), Sales growth, Top Clients, Employees, Category contribution.
 
 🔹 Customer Analytics Dashboard
 
 <p align="center"> <img src="https://github.com/user-attachments/assets/d3807d45-46f7-48f3-bb78-624c02e01011" width="650"> </p>
 
-Focuses on:
-Customer Lifetime Value (LTV)
-Repeat purchase behavior
-Customer ranking
-Revenue concentration
+Focuses on: Customer Lifetime Value (LTV), Repeat purchase behavior, Customer ranking, Revenue concentration
 
 Conditional formatting using DAX for visual storytelling
 
