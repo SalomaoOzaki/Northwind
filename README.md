@@ -13,6 +13,7 @@ Power BI (Data Modeling, DAX, Visualization)
 GitHub (Version Control & Documentation) and Portfolio https://sites.google.com/view/salomaoanalytics/home
 
 **Data Architecture & Workflow**
+
 1️⃣ Database Setup
 
 Installed MySQL Workbench locally
