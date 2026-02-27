@@ -93,7 +93,7 @@ CALCULATE(
 )
 ```
 
-Repeat Purchase Rate = 
+```Repeat Purchase Rate = 
 VAR TotalCustomers =
     COUNTROWS(vw_customer_ltv)
 
@@ -106,18 +106,20 @@ VAR RepeatCustomers =
     )
 RETURN
 DIVIDE(RepeatCustomers, TotalCustomers, 0)
+```
 
-Revenue Last Month = 
+```Revenue Last Month = 
 CALCULATE(
     [TotalRevenue],
     DATEADD('Date'[Date], -1, MONTH)
 )
+```
 
-Revenue MoM % = 
+```Revenue MoM % = 
 DIVIDE(
     [TotalRevenue] - [Revenue Last Month],
     [Revenue Last Month]
-)
+)```
 
 
 🎯 Business Value Delivered
