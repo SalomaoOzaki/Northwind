@@ -1,68 +1,171 @@
-# Northwind
-Overview, this project uses SQL for Data Manipulation where I use aggregation, CTE, window function, and views are created. From Power BI I connect with MYSQL and views are uploaded on my Pbix file.
+**Northwind Analytics Project — SQL & Power BI**
 
+🔍 Project Overview
 
+This project delivers an end-to-end business intelligence solution using the classic Northwind dataset, covering data modeling, SQL transformation, analytical engineering, and interactive dashboard development in Power BI.
 
-Database Reference: https://github.com/harryho/db-samples/blob/master/mysql/northwind.sql
+The main goal is to demonstrate advanced SQL capabilities, dimensional modeling, and business-driven analytics, transforming raw transactional data into actionable insights for Sales, Customer Analytics, and Executive decision-making.
 
-Workflow
+Key Technologies:
 
-Installed MySQL Workbench on my Local Machine
+MySQL (SQL Development & Data Modeling)
 
-In MYSQL Workench I opened a new SQL query, and then I pulled the query from the downloaded file (https://github.com/harryho/db-samples/blob/master/mysql/northwind.sql).
+Power BI (Data Modeling, DAX, Visualization)
 
-Generated my Database Schema through Database -> Reverse Engineer (file https://github.com/SalomaoOzaki/Northwind/blob/main/northwindModel.mwb)
-<img width="485" height="387" alt="image" src="https://github.com/user-attachments/assets/477a9c9e-56f1-4bda-989b-5cc210830d2a" />
- 
-Then I created the following views. For reference, the SQL codes Snippets are available in the northwindQueryViews.sql file (https://github.com/SalomaoOzaki/Northwind/blob/main/northwindQueryViews.sql)
-vw_fact_sales
-vw_customer_ltv
-vw_employee_performance
-vw_monthly_sales
-vw_shipping_performance
-vw_top_customers_category
+GitHub (Version Control & Documentation)
 
-Then I connected my Power BI to MySQL through a connector and was able to get the views I created.
+🏗️ Data Architecture & Workflow
+1️⃣ Database Setup
 
-In Power BI I have firstly carried out Sales Executive Analysis and Customer Analytics, and in the near future will add some more analysis such as Employee and Shipping Perfomance.
+Installed MySQL Workbench locally
 
-To support the achievement of some of my charts I had to make Measures, here are them:
+Imported the Northwind database from:
+https://github.com/harryho/db-samples/blob/master/mysql/northwind.sql
 
-AVG Deal Size = 
-Divide(
-    SUM(vw_employee_performance[TotalRevenue]),
-    SUM(vw_employee_performance[TotalOrders]), 0)
+Generated the database schema model using reverse engineering:
 
+👉 Database → Reverse Engineer
+👉 Model file:
+https://github.com/SalomaoOzaki/Northwind/blob/main/northwindModel.mwb
+
+<p align="center"> <img src="https://github.com/user-attachments/assets/477a9c9e-56f1-4bda-989b-5cc210830d2a" width="480"> </p>
+2️⃣ SQL Transformation Layer (Analytical Views)
+
+To optimize Power BI performance and maintain clean analytical logic, I built a SQL semantic layer using Views.
+
+These views leverage:
+
+CTEs
+
+Window Functions
+
+Aggregations
+
+Ranking logic
+
+Business KPI calculations
+
+All SQL scripts are documented here:
+📄 northwindQueryViews.sql
+
+Created Analytical Views:
+
+vw_fact_sales → Central sales fact table
+
+vw_customer_ltv → Customer lifetime value & behavior metrics
+
+vw_employee_performance → Sales rep performance KPIs
+
+vw_monthly_sales → Monthly revenue trends
+
+vw_shipping_performance → Logistics & delivery insights
+
+vw_top_customers_category → Product-category-based customer analysis
+
+This structure allows Power BI to consume analytics-ready datasets, minimizing transformation inside Power BI and ensuring scalable performance.
+
+3️⃣ Power BI Integration & Data Modeling
+
+Power BI connects directly to MySQL using the native connector, importing the SQL views as analytical tables.
+
+In Power BI:
+
+Built a star-schema semantic model
+
+Implemented DAX measures for KPIs
+
+Designed interactive dashboards for business users
+
+📈 Dashboards & Business Analytics
+🔹 Sales Executive Dashboard
+
+Focuses on:
+
+Revenue trends (MoM)
+
+Sales growth
+
+Product performance
+
+Customer concentration (Pareto analysis)
+
+Category contribution
+
+<p align="center"> <img src="https://github.com/user-attachments/assets/d3807d45-46f7-48f3-bb78-624c02e01011" width="650"> </p>
+🔹 Customer Analytics Dashboard
+
+Focuses on:
+
+Customer Lifetime Value (LTV)
+
+Repeat purchase behavior
+
+Customer ranking
+
+Revenue concentration
+
+Client activity lifecycle
+
+<p align="center"> <img src="https://github.com/user-attachments/assets/1fba3381-5af6-45b0-b9e2-6740240af9d0" width="650"> </p>
+📊 Core KPIs & Business Metrics
+
+To support the dashboards, I implemented several business-driven DAX measures, including:
+
+🟦 Sales & Revenue Performance
+
+Total Revenue
+
+Revenue MoM %
+
+Revenue per Employee
+
+Average Deal Size
+
+Average Order Value (AOV)
+
+🟨 Customer Analytics
+
+Customer Lifetime Value (LTV)
+
+Repeat Purchase Rate
+
+Total Active Days
+
+Top Clients Highlighting
+
+Pareto (80/20) Analysis
+
+🟩 Workforce Performance
+
+Orders per Employee
+
+Revenue per Employee
+
+Top Employee Identification
+
+🧠 Advanced Analytical Techniques
+
+This project applies advanced analytical concepts, including:
+
+Window functions for ranking & cumulative metrics
+
+Pareto Principle (80/20 analysis)
+
+Customer Lifetime Value modeling
+
+Time Intelligence (MoM, trend analysis)
+
+Conditional formatting using DAX for visual storytelling
+
+🧩 DAX Measures (Selected Examples)
 Avg. Order Value = 
-    CALCULATE(
-        DIVIDE(SUM(vw_fact_sales[Revenue]),
-                DISTINCTCOUNT(vw_fact_sales[OrderID]),2))
-
-Funnel Color = 
-VAR MaxValue =
-    MAXX(ALLSELECTED(vw_fact_sales[CategoryName]), [TotalRevenue])
-RETURN
-IF(
-    [TotalRevenue] = MaxValue,
-    "#1F4E79",   -- Primary color
-    "#B3B3B3"    -- Neutral color
-)
-
-
-Orders per Employee = 
+CALCULATE(
     DIVIDE(
-        sum(vw_employee_performance[TotalOrders]),
-        DISTINCTCOUNT(vw_employee_performance[EmployeeID]),0)
-
-Paretto Color = 
-VAR Perc = SELECTEDVALUE(vw_customer_ltv[Revenue Cumulative %])
-RETURN
-IF(
-    Perc <= 0.8,
-    "#1F4E79",   -- Primary color
-    "#B3B3B3"    -- Neutral color
+        SUM(vw_fact_sales[Revenue]),
+        DISTINCTCOUNT(vw_fact_sales[OrderID]),
+        2
+    )
 )
-
 Repeat Purchase Rate = 
 VAR TotalCustomers =
     COUNTROWS(vw_customer_ltv)
@@ -74,60 +177,23 @@ VAR RepeatCustomers =
             vw_customer_ltv[TotalOrders] > 1
         )
     )
-
 RETURN
 DIVIDE(RepeatCustomers, TotalCustomers, 0)
-
-Revenue Last Month = 
-CALCULATE(
-    [TotalRevenue],
-    DATEADD('Date'[Date], -1, MONTH)
-)
-
 Revenue MoM % = 
 DIVIDE(
     [TotalRevenue] - [Revenue Last Month],
     [Revenue Last Month]
 )
+🎯 Business Value Delivered
 
-Revenue per Employee = 
-    DIVIDE(
-        sum(vw_employee_performance[TotalRevenue]),
-        DISTINCTCOUNT(vw_employee_performance[EmployeeID]), 0
-)
+This solution enables stakeholders to:
 
-Top 10 LTV clients Color = 
-VAR MaxValue =
-    MAXX(ALLSELECTED(vw_customer_ltv[CustomerName]), [Total Days Active])
-RETURN
-IF(
-    [Total Days Active] = MaxValue,
-    "#1F4E79",   -- Primary color
-    "#B3B3B3"    -- Neutral color
-)
+Identify top-performing products and customers
 
-Top Clients Color = 
-VAR MaxValue =
-    MAXX(ALLSELECTED(vw_fact_sales[CustomerName]), [TotalRevenue])
-RETURN
-IF(
-    [TotalRevenue] = MaxValue,
-    "#1F4E79",   -- Primary color
-    "#B3B3B3"    -- Neutral color
-)
+Monitor revenue growth trends
 
-Top Employees Color = 
-VAR MaxValue =
-    MAXX(ALLSELECTED(vw_fact_sales[FirstName]), [TotalRevenue])
-RETURN
-IF(
-    [TotalRevenue] = MaxValue,
-    "#1F4E79",   -- Primary color
-    "#B3B3B3"    -- Neutral color
-)
+Understand customer purchasing behavior
 
-Total Days Active = 
-    sum(vw_customer_ltv[ActiveDays])
+Optimize sales team performance
 
-TotalRevenue = 
-    sum(vw_fact_sales[Revenue])
+Apply data-driven decision making
