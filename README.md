@@ -109,7 +109,8 @@ Focuses on: Revenue trends (MoM), Sales growth, Top Clients, Employees, Category
 
 🔹 Customer Analytics Dashboard
 
-<p align="center"> <img src="https://github.com/user-attachments/assets/d3807d45-46f7-48f3-bb78-624c02e01011" width="650"> </p>
+<p align="center"> <img src="https://github.com/user-attachments/assets/97aa2ae4-5947-47f1-b144-d09ed12ba53d" width="650"> </p>
+
 
 Focuses on: Customer Lifetime Value (LTV), Repeat purchase behavior, Customer ranking, Revenue concentration
 
